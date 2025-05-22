@@ -31,3 +31,27 @@ Music_Soul/
 
 # Getting Started
 
+1. Clone the Repository
+
+git clone <repository-url>
+cd Music_Soul
+
+
+2. Set Up a Virtual Environment (Recommended)
+
+python -m venv venv
+source venv/bin/activate  # Or venv\Scripts\activate on Windows
+
+
+3. Install Dependencies
+
+pip install -r requirements.txt
+
+
+4. Run the Application
+
+python app.py
+
+
+5. Access in Browser Visit http://127.0.0.1:5000/ to use the feature.
+
