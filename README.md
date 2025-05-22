@@ -84,3 +84,41 @@ NFR-5: High availability (99.9% uptime).
 NFR-6: Accessible UI controls.
 
 
+# Data Requirements
+
+Track metadata (ID, title, duration, tags)
+
+User preferences saved in local storage or via API
+
+
+# External Interfaces
+
+UI: Playback bar with intuitive controls
+
+Software API: Media library access
+
+Hardware: Standard audio output support
+
+
+# Use Cases
+
+New User Welcome: Music starts automatically, user mutes, preference saved.
+
+Browsing Playlists: Music continues during exploration, pauses on media interaction.
+
+
+# Future Enhancements
+
+Listening analytics
+
+User-customizable themes
+
+Integration with Spotify and similar services
+
+Adaptive music based on context/mood
+
+Collaborative playback sessions
+
+Scheduled themes and gamified features
+
+
