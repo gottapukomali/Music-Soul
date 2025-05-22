@@ -73,4 +73,14 @@ FR-6 to FR-7: Dynamic music selection from media library.
 
 FR-8 to FR-9: User playback controls and preference persistence.
 
+# Non-Functional Requirements
+
+NFR-1 to NFR-2: Load performance and smooth playback.
+
+NFR-3 to NFR-4: Browser compatibility and graceful fallback.
+
+NFR-5: High availability (99.9% uptime).
+
+NFR-6: Accessible UI controls.
+
 
