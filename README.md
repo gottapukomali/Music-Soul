@@ -29,3 +29,5 @@ Music_Soul/
 ├── requirements.txt           # Dependencies
 └── README.md                  # Project overview
 
+# Getting Started
+
