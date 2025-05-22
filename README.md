@@ -55,6 +55,16 @@ python app.py
 
 5. Access in Browser Visit http://127.0.0.1:5000/ to use the feature.
 
+# usage
+
+Music plays automatically on welcome or browsing screens.
+
+Playback pauses for focused tasks or other media.
+
+Use on-screen controls for volume, mute, or playback.
+
+Admins can manage playlists via CMS.
+
 # Functional Requirements
 
 FR-1 to FR-5: Playback triggers and pause conditions.
