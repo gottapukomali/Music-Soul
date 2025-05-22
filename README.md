@@ -55,3 +55,12 @@ python app.py
 
 5. Access in Browser Visit http://127.0.0.1:5000/ to use the feature.
 
+# Functional Requirements
+
+FR-1 to FR-5: Playback triggers and pause conditions.
+
+FR-6 to FR-7: Dynamic music selection from media library.
+
+FR-8 to FR-9: User playback controls and preference persistence.
+
+
