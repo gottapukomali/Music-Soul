@@ -114,14 +114,5 @@ Visit: [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
 Feel free to fork the repository, submit pull requests, or suggest new ideas via issues. Contributions are welcome!
 
-## 🛡️ License
-
-[MIT License](LICENSE)
 
 
-**Enjoy the rhythm of Music Soul – Where your interface meets ambiance.**
-
-```
-
-Let me know if you'd like this saved as a `.md` file or converted into another format like PDF or DOCX.
-```
