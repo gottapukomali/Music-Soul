@@ -16,7 +16,7 @@
 ## 📁 Project Structure
 
 
-
+'''
 Music\_Soul/
 ├── app/
 │   ├── music\_player.py         # Core playback logic
@@ -30,7 +30,7 @@ Music\_Soul/
 ├── requirements.txt            # Dependencies
 └── README.md                   # Project overview
 
-
+'''
 
 ## 🚀 Getting Started
 
