@@ -16,7 +16,8 @@
 ## 📁 Project Structure
 
 
-'''
+```
+
 Music\_Soul/
 ├── app/
 │   ├── music\_player.py         # Core playback logic
@@ -30,7 +31,7 @@ Music\_Soul/
 ├── requirements.txt            # Dependencies
 └── README.md                   # Project overview
 
-'''
+````
 
 ## 🚀 Getting Started
 
@@ -109,6 +110,11 @@ Visit: [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 * Context-aware adaptive music
 * Collaborative music sessions
 * Themed scheduling and gamified experiences
+
+
+
+
+
 
 
 
