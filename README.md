@@ -6,7 +6,7 @@
 
 ## ✨ Features
 
-- **Background Music Playback**: Soft ambient music plays automatically on welcome and browsing screens.  
+- **Music Playback**: Soft ambient music plays automatically on welcome and browsing screens.  
 - **Smart Triggers**: Playback activates during long content loads and pauses during focused tasks or when other media is active.  
 - **User Controls**: Users can pause/play, mute/unmute, and adjust volume through intuitive UI elements.  
 - **Preferences Memory**: Remembers user settings (volume, mute state) across sessions.  
