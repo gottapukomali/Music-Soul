@@ -14,4 +14,18 @@ Admin Content Management: Update playlists seasonally or thematically through CM
 
 Responsive Design: Seamless audio integration without disrupting page performance.
 
+# Project Structure
+
+Music_Soul/
+├── app/
+│   ├── music_player.py        # Core playback logic
+│   ├── triggers.py            # Logic for screen and task-based triggers
+│   └── user_controls.py       # Playback and settings controls
+├── templates/
+│   ├── welcome.html           # Screen with background music
+│   └── playlists.html         # Browsing interface
+├── static/
+│   └── js/music.js            # Client-side controls
+├── requirements.txt           # Dependencies
+└── README.md                  # Project overview
 
