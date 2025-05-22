@@ -110,9 +110,7 @@ Visit: [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 * Collaborative music sessions
 * Themed scheduling and gamified experiences
 
-## 📬 Contributing
 
-Feel free to fork the repository, submit pull requests, or suggest new ideas via issues. Contributions are welcome!
 
 
 
