@@ -1,1 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music Album</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+  <!-- Header -->
+  <header class="header">
+    <img src="logo.jpg" class="logo" alt="MusicSoul" width="50" height="auto"/>
+    <div class="logo">MusicSoul</div>
+    <input type="text" placeholder="Search here what you want to play" />
+    <div class="header-icons">
+      <span>🔔</span>
+      <span>🌐</span>
+      <span>👤</span>
+    </div>
+  </header>
+
+  <!-- Main layout -->
+  <div class="container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>My Library</h2>
+      <button class="album-btn">Albums</button>
+      <input type="text" placeholder="Search Albums..." class="Album-search"/>
+      <div class="Album-list">
+        <div class="Album">🎤 Name of Album</div>
+        <div class="Album">🎤 Name of Album</div>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <main class="main">
+      <div class="album-header">
+        <h2>🎬 Movie Name</h2>
+      </div>
+      <div class="song-list">
+        <div class="song-row">
+          <div class="song-name">Song Name</div>
+          <p><strong>Artist</strong></p>
+          <div class="song-time">3:45</div>
+        </div>
+        <div class="song-row">
+          <div class="song-name">Another song</div>
+          <p><strong>Artist</strong></p>
+          <div class="song-time">4:12</div>
+        </div>
+      </div>
+      <div class="extras">
+        <div class="music-soul">🎧 Music Soul</div>
+        <div class="quick-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li>Home</li>
+            <li>Linked</li>
+            <li>History</li>
+            <li>Playlist</li>
+            <li>Downloads</li>
+          </ul>
+        </div>
+        <div class="contact">
+          <h3>Get in Touch</h3>
+          <p>📧 mail ID</p>
+          <p>🔗 Follow us</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Now Playing -->
+    <section class="now-playing">
+      <div class="song-details">
+        <div class="song-thumb">🖼️</div>
+        <div>
+          <div class="song-name">Song Name</div>
+          <div class="artist-name">Artist Name</div>
+        </div>
+        <button class="add-btn">➕</button>
+      </div>
+      <div class="controls">
+        <button>⏮️</button>
+        <button>▶️</button>
+        <button>🔁</button>
+      </div>
+      <div class="progress">
+        <span>00:00</span>
+        <input type="range" />
+      </div>
+      <div class="actions-bottom">
+        <button>Lyrics</button>
+        <button>Queue</button>
+      </div>
+    </section>
+
+    <!-- Right panel -->
+    <aside class="right-panel">
+      <h3>▶ Song Name</h3>
+      <div class="song-image">Image</div>
+      <p><strong>Song</strong>Name</p>
+      <p><strong>Hero</strong> Name</p>
+      <p><strong>Heroine:</strong> Name</p>
+      <p><strong>Actor:</strong> Name</p>
+      <div class="next-queue">
+        <h4>Next Queue</h4>
+        <div class="queue-item">Album Name</div>
+        <div class="queue-item">Song Name - Artist</div>
+      </div>
+    </aside>
+
+  </div>
+
+</body>
+</html>
