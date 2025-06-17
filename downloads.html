@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music App</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header>
+    <img src="logo.jpg" class="logo" alt="MusicSoul" width="50" height="auto" />
+    <div class="logo">MusicSoul</div>
+    <nav>
+  <a href="index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#f7a520" viewBox="0 0 24 24" style="vertical-align: middle;">
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+    <span style="margin-right: 5px;"></span>
+  </a>
+</nav>
+
+    <input type="text" placeholder="Search here what you want to play" />
+
+    <div class="header-icons">
+      <span>🔔</span>
+      <span>🌐</span>
+      <span>👤</span>
+    </div>
+  </header>
+
+  <main>
+    <aside class="sidebar">
+      <h2>My Library</h2>
+      <button>Download</button>
+      <button class="active">Downloads</button>
+    </aside>
+
+    <section class="downloads">
+      <h2>Downloads</h2>
+      <ul class="song-list">
+        <li>
+          <span>1.</span>
+          
+          <span class="song-info">
+            <strong>Song Name</strong><br/>
+            Artist
+            
+          </span>
+          <span class="song-time"></span>
+        </li>
+        <li>
+          <span>2.</span>
+          <span class="song-info">
+            <strong>Another Song</strong><br/>
+            Artist
+          </span>
+          <span class="song-time"></span>
+        </li>
+      </ul>
+      <div class="footer">
+        <div class="music-soul">🎶 Music Soul</div>
+        <div class="quick-links">
+           <h1>Quick-Links</h1>
+          <a href="#">Home</a>
+          <a href="#">Liked</a>
+          <a href="#">History</a>
+          <a href="#">Playlist</a>
+          <a href="#">Downloads</a>
+        </div>
+
+        <div class="contact">
+          <h1>Get in touch</h1>
+          <p>📧 mail.id@example.com</p>
+          <p>🔗 Follow us</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="now-playing">
+      <h3>▶ Song Name</h3>
+      <div class="song-image">Image</div>
+      <div class="song-meta">
+        <strong>Song Name</strong><br/>
+        Hero Name
+        <p>Heroine Name<br/>Actor</p>
+      </div>
+      <div class="next-queue">
+        <h4>Next Queue</h4>
+        <p>🎵 Song Name<br/>Artist</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="music-player">
+    <div class="current-song">
+      <div class="song-image-small">🎵</div>
+      <div>
+        <strong>Song Name</strong><br/>
+        Artist
+      </div>
+    </div>
+    <div class="controls">
+      <button>⏮</button>
+      <button>▶️</button>
+      <button>⏭</button>
+    </div>
+    <input type="range" min="0" max="100" value="0"/>
+    <div class="extras">
+      <button>Lyrics</button>
+      <button>Queue</button>
+    </div>
+    
+</div>
+
+  </footer>
+</body>
+</html>
 
