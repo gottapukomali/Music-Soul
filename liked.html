@@ -1,1 +1,148 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music Player UI</title>
+
+  <!-- Link to External CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<script>
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('collapsed');
+  }
+</script>
+
+<body>
+
+  <!-- Top Header -->
+  <header>
+    <div class="logo">
+      <img src="4.png" alt="Logo" class="logo-img" />
+      <span class= "logo-text">Music Soul</span>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search here what you want to play" />
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="top-icons">
+      <i class="fas fa-bell"></i>
+      <i class="fas fa-globe"></i>
+      <i class="fas fa-user"></i>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="main">
+
+    <!-- Sidebar -->
+     <div class="sidebar-toggle" onclick="toggleSidebar()">
+  <i class="fas fa-angle-double-left"></i>
+</div>
+    <aside class="sidebar">
+  
+  <h3>My Library</h3>
+  <ul>
+    <li><i class="fas fa-heart"></i> Liked Songs</li>
+    <li><i class="fas fa-history"></i> History</li>
+    <li><i class="fas fa-music"></i> Playlist</li>
+    <li><i class="fas fa-compact-disc"></i> Albums</li>
+    <li><i class="fas fa-microphone"></i> Artists</li>
+    <li><i class="fas fa-download"></i> Downloads</li>
+  </ul>
+</aside>
+
+    <!-- Center Songs List -->
+    <section class="songs-list">
+      <h2>❤️ Liked Songs</h2>
+      <div class="song-row">
+        <span>1</span>
+        <img src="https://via.placeholder.com/40" alt="song">
+        <div class="song-details">
+          <strong>Song Name</strong>
+          <small>Singer Name</small>
+        </div>
+        <span>Movie Name</span>
+        <span>12 May 2024</span>
+        <i class="fas fa-check-circle"></i>
+        <i class="fas fa-ellipsis-v"></i>
+      </div>
+    </section>
+
+
+    <!-- Right Now Playing -->
+     <!-- Right Sidebar Toggle Button -->
+<div class="right-toggle-btn" onclick="toggleRightSidebar()">
+  &#x25B6; <!-- Unicode for right-pointing triangle ▶ -->
+</div>
+
+
+    <aside class="right-sidebar">
+      <h3>Now Playing</h3>
+      <div class="current-song">
+        <img src="https://via.placeholder.com/80" alt="current">
+        <p><strong>Song Title</strong><br><small>Artist</small></p>
+      </div>
+
+      <h4>Up Next</h4>
+      <ul class="queue">
+        <li>🎵 Song 1 - Artist</li>
+        <li>🎵 Song 2 - Artist</li>
+        <li>🎵 Song 3 - Artist</li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Bottom Music Controls -->
+  <footer>
+    <div class="controls">
+      <button>⏮</button>
+      <button>▶</button>
+      <button>⏭</button>
+    </div>
+    <input type="range" min="0" max="100" value="0" />
+    <div class="extras">
+      <button>Lyrics</button>
+      <button>Queue</button>
+    </div>
+  </footer>
+<script>
+  function toggleRightSidebar() {
+    const sidebar = document.getElementById('rightSidebar');
+    const toggleBtn = document.getElementById('rightToggleBtn');
+
+    sidebar.classList.toggle('closed');
+
+    // Change icon
+    if (sidebar.classList.contains('closed')) {
+      toggleBtn.innerHTML = '▶';
+    } else {
+      toggleBtn.innerHTML = '◀';
+    }
+  }
+</script>
+
+<script>
+  function toggleRightSidebar() {
+    const sidebar = document.getElementById('rightSidebar');
+    const toggleBtn = document.getElementById('rightToggleBtn');
+
+    sidebar.classList.toggle('closed');
+
+    // Change icon
+    if (sidebar.classList.contains('closed')) {
+      toggleBtn.innerHTML = '▶';
+    } else {
+      toggleBtn.innerHTML = '◀';
+    }
+  }
+</script>
+
+</body>
+</html>
