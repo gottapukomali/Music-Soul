@@ -3,201 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Music Soul</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- External CSS -->
+  <title>Music Album</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <img src="m.png" alt="Music Soul Logo" />
-    <div class="logo-text">Music Soul</div>
-    <div class="Home-box">
-      <button class="circle-btn" onclick="location.href='music_index.html'" title="Home">
-        <i class="fas fa-home"></i>
-      </button>
+  <!-- Header -->
+  <header class="header">
+    <img src="logo.jpg" class="logo" alt="MusicSoul" width="50" height="auto"/>
+    <div class="logo">MusicSoul</div>
+    <input type="text" placeholder="Search here what you want to play" />
+    <div class="header-icons">
+      <span>🔔</span>
+      <span>🌐</span>
+      <span>👤</span>
     </div>
-  </div>
+  </header>
 
-  <div class="search-box">
-    <input type="text" placeholder="Search here to play anything..." />
-    <button><i class="fas fa-search"></i></button>
-  </div>
+  <!-- Main layout -->
+  <div class="container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>My Library</h2>
+      <button class="album-btn">Albums</button>
+      <input type="text" placeholder="Search Albums..." class="Album-search"/>
+      <div class="Album-list">
+        <div class="Album">🎤 Name of Album</div>
+        <div class="Album">🎤 Name of Album</div>
+      </div>
+    </aside>
 
-  <div class="icon-buttons">
-    <button class="circle-btn" title="Notifications"><i class="fas fa-bell"></i></button>
-    <div class="language-wrapper">
-  <button class="circle-btn" title="Select Language" onclick="toggleLanguageDropdown()">
-    <i class="fas fa-globe"></i>
-  </button>
-  <ul class="language-dropdown">
-    <li>English</li>
-    <li>Hindi</li>
-    <li>French</li>
-  </ul>
-</div>
-
-    <button class="circle-btn" title="Profile"><i class="fas fa-user"></i></button>
-  </div>
-</header>
-
-<div class="three-column-wrapper">
-  <div class="three-column-container">
-
-   <div class="left-column" id="leftColumn">
-  <h2 class="library-title">My Library</h2>
-  <ul class="library-menu">
-    <li><a href="playlist.html"><i class="fas fa-music"></i> Playlist</a></li>
-    <li><a href="liked.html"><i class="fas fa-heart"></i> Liked Songs</a></li>
-    <li><a href="albums.html"><i class="fas fa-compact-disc"></i> Albums</a></li>
-    <li><a href="artists.html"><i class="fas fa-user"></i> Artists</a></li>
-    <li><a href="downloads.html"><i class="fas fa-download"></i> Downloads</a></li>
-  </ul>
-</div>
-
-
-    <div class="main-column">
-      <h2 class="section-title"> Recently Played</h2>
-      <div class="album-section">
-        <h2 class="section-title"> Albums</h2>
-        <div class="album-row">
-          <div class="album-card">
-            <img src="album1.jpg" alt="Album 1">
-            <p>Album 1</p>
-          </div>
-          <div class="album-card">
-            <img src="album2.jpg" alt="Album 2">
-            <p>Album 2</p>
-          </div>
-          <div class="album-card">
-            <img src="album3.jpg" alt="Album 3">
-            <p>Album 3</p>
-          </div>
-          <div class="album-card">
-            <img src="album4.jpg" alt="Album 4">
-            <p>Album 4</p>
-          </div>
+    <!-- Content -->
+    <main class="main">
+      <div class="album-header">
+        <h2>🎬 Movie Name</h2>
+      </div>
+      <div class="song-list">
+        <div class="song-row">
+          <div class="song-name">Song Name</div>
+          <p><strong>Artist</strong></p>
+          <div class="song-time">3:45</div>
+        </div>
+        <div class="song-row">
+          <div class="song-name">Another song</div>
+          <p><strong>Artist</strong></p>
+          <div class="song-time">4:12</div>
         </div>
       </div>
-	  <hr class="footer-separator" />
-			<footer class="footer">
-  <div class="footer-container">
-
-    <!-- Branding + Social -->
-    <div class="footer-section">
-      <h2 class="footer-title">Music Soul</h2>
-      <p class="footer-description">Stream your favorite tunes and <br>discover new artists every day.</p>
-      <div class="footer-social">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
+      <div class="extras">
+        <div class="music-soul">🎧 Music Soul</div>
+        <div class="quick-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li>Home</li>
+            <li>Linked</li>
+            <li>History</li>
+            <li>Playlist</li>
+            <li>Downloads</li>
+          </ul>
+        </div>
+        <div class="contact">
+          <h3>Get in Touch</h3>
+          <p>📧 mail ID</p>
+          <p>🔗 Follow us</p>
+        </div>
       </div>
-    </div>
+    </main>
 
-    <!-- Explore Menu -->
-    <div class="footer-section">
-      <h3 class="footer-subtitle">Explore Menu</h3>
-      <ul class="footer-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Liked</a></li>
-        <li><a href="#">Artists</a></li>
-        <li><a href="#">Albums</a></li>
-        <li><a href="#">Playlists</a></li>
-		<li><a href="#">Downloads</a></li>
-      </ul>
-    </div>
+    <!-- Now Playing -->
+    <section class="now-playing">
+      <div class="song-details">
+        <div class="song-thumb">🖼️</div>
+        <div>
+          <div class="song-name">Song Name</div>
+          <div class="artist-name">Artist Name</div>
+        </div>
+        <button class="add-btn">➕</button>
+      </div>
+      <div class="controls">
+        <button>⏮️</button>
+        <button>▶️</button>
+        <button>🔁</button>
+      </div>
+      <div class="progress">
+        <span>00:00</span>
+        <input type="range" />
+      </div>
+      <div class="actions-bottom">
+        <button>Lyrics</button>
+        <button>Queue</button>
+      </div>
+    </section>
 
-    <!-- Get in Touch moved to right of Explore Menu -->
-    <div class="footer-section">
-      <h3 class="footer-subtitle">Get in Touch</h3>
-      <p>Email: support@soundvibe.com</p>
-      <p>Phone: +1 (555) 123-4567</p>
-    </div>
+    <!-- Right panel -->
+    <aside class="right-panel">
+      <h3>▶ Song Name</h3>
+      <div class="song-image">Image</div>
+      <p><strong>Song</strong>Name</p>
+      <p><strong>Hero</strong> Name</p>
+      <p><strong>Heroine:</strong> Name</p>
+      <p><strong>Actor:</strong> Name</p>
+      <div class="next-queue">
+        <h4>Next Queue</h4>
+        <div class="queue-item">Album Name</div>
+        <div class="queue-item">Song Name - Artist</div>
+      </div>
+    </aside>
 
   </div>
-
-  <div class="bottom-footer-text">
-    &copy; 2025 Music Soul. All rights reserved.
-  </div>
-</footer>
-
-    </div>
-
-    <div class="right-column" id="rightColumn">
-      <h2 style="color: #f7a520;">Now Playing</h2>
-      <img src="your-image.jpg" alt="Now Playing" class="right-image" />
-      <p style="margin-top: 1rem;">Artist: XYZ</p>
-      <p>Album: Demo Album</p>
-    </div>
-  </div>
-</div>
-
-  <!-- Bottom Music Controls with Image, Song Info, Progress Bar -->
-<footer class="bottom-music-footer">
-  <!-- Left: Song Info -->
-  <div class="song-info">
-    <img src="album-cover.jpg" alt="Album" />
-    <div class="text">
-      <div class="song-title">Song Name</div>
-      <div class="artist-name">Artist Name</div>
-    </div>
-  </div>
-
-  <!-- Center: Controls + Progress Bar -->
-  <div class="center-controls">
-   <div class="controls">
-  <button class="circle-btn">⏮</button>
-  <button class="circle-btn">▶</button>
-  <button class="circle-btn">⏭</button>
-</div>
-    <input type="range" class="music-progress" min="0" max="100" value="0" />
-  </div>
-
-  <!-- Right: Extra Buttons -->
-  <div class="extras">
-    <button class="circle-btn">Lyrics</button>
-    <button class="circle-btn">Queue</button>
-  </div>
-</footer>
-
-<ul class="queue">
-  <li>Song 1</li>
-  <li>Song 2</li>
-</ul>
-
-
-
-<script>
-  const playPauseBtn = document.getElementById('playPauseBtn');
-  let isPlaying = false;
-
-  playPauseBtn.addEventListener('click', () => {
-    isPlaying = !isPlaying;
-    playPauseBtn.innerHTML = `<i class="fas fa-${isPlaying ? 'pause' : 'play'}"></i>`;
-  });
-  
-  const progress = document.querySelector('.custom-progress-bar');
-  setInterval(() => {
-    progress.value = (parseInt(progress.value) + 1) % 101;
-    // Update background fill
-    const fill = progress.value;
-    progress.style.background = `linear-gradient(to right, #f7a520 ${fill}%, #333 ${fill}%)`;
-  }, 1000);
-
-  function toggleLanguageDropdown() {
-    document.querySelector('.language-dropdown').classList.toggle('show');
-  }
-  
-  
-  
-</script>
 
 </body>
 </html>
