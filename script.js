@@ -15,6 +15,10 @@ class MusicPlayer {
     this.playlists = JSON.parse(localStorage.getItem('playlists')) || [];
     this.downloads = JSON.parse(localStorage.getItem('downloads')) || [];
     
+    // Sidebar states
+    this.leftSidebarCollapsed = false;
+    this.rightSidebarCollapsed = false;
+    
     this.initializeElements();
     this.initializeEventListeners();
     this.loadSampleData();
@@ -56,6 +60,11 @@ class MusicPlayer {
     this.pages = document.querySelectorAll('.page');
     this.sidebarToggle = document.getElementById('sidebarToggle');
     this.sidebar = document.getElementById('sidebar');
+    this.rightSidebar = document.getElementById('rightSidebar');
+    
+    // Toggle buttons
+    this.leftToggle = document.getElementById('leftToggle');
+    this.rightToggle = document.getElementById('rightToggle');
     
     // Search
     this.searchInput = document.getElementById('searchInput');
@@ -100,6 +109,10 @@ class MusicPlayer {
     
     this.sidebarToggle.addEventListener('click', () => this.toggleSidebar());
     
+    // Sidebar toggle buttons
+    this.leftToggle.addEventListener('click', () => this.toggleLeftSidebar());
+    this.rightToggle.addEventListener('click', () => this.toggleRightSidebar());
+    
     // Search
     this.searchInput.addEventListener('input', () => this.handleSearch());
     
@@ -118,6 +131,35 @@ class MusicPlayer {
         this.closeCreatePlaylistModal();
       }
     });
+  }
+
+  // Sidebar Toggle Functions
+  toggleLeftSidebar() {
+    this.leftSidebarCollapsed = !this.leftSidebarCollapsed;
+    this.sidebar.classList.toggle('collapsed', this.leftSidebarCollapsed);
+    this.leftToggle.classList.toggle('collapsed', this.leftSidebarCollapsed);
+    
+    // Update icon
+    const icon = this.leftToggle.querySelector('i');
+    if (this.leftSidebarCollapsed) {
+      icon.className = 'fas fa-chevron-right';
+    } else {
+      icon.className = 'fas fa-chevron-left';
+    }
+  }
+
+  toggleRightSidebar() {
+    this.rightSidebarCollapsed = !this.rightSidebarCollapsed;
+    this.rightSidebar.classList.toggle('collapsed', this.rightSidebarCollapsed);
+    this.rightToggle.classList.toggle('collapsed', this.rightSidebarCollapsed);
+    
+    // Update icon
+    const icon = this.rightToggle.querySelector('i');
+    if (this.rightSidebarCollapsed) {
+      icon.className = 'fas fa-chevron-left';
+    } else {
+      icon.className = 'fas fa-chevron-right';
+    }
   }
 
   loadSampleData() {
@@ -455,6 +497,13 @@ class MusicPlayer {
       targetPage.classList.add('active');
       this.loadPageContent(pageId);
     }
+    
+    // Update active nav link
+    this.navLinks.forEach(link => link.classList.remove('active'));
+    const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+    if (activeLink) {
+      activeLink.classList.add('active');
+    }
   }
 
   loadPageContent(pageId) {
@@ -484,7 +533,7 @@ class MusicPlayer {
     // Load recently played
     const recentlyPlayedContainer = document.getElementById('recentlyPlayed');
     recentlyPlayedContainer.innerHTML = this.sampleSongs.slice(0, 4).map(song => `
-      <div class="music-card" onclick="musicPlayer.playSong(${JSON.stringify(song).replace(/"/g, '&quot;')})">
+      <div class="music-card" onclick="musicPlayer.playSong(${JSON.stringify(song).replace(/"/g, '"')})">
         <img src="${song.artwork}" alt="${song.title}">
         <h3>${song.title}</h3>
         <p>${song.artist}</p>
@@ -525,7 +574,7 @@ class MusicPlayer {
       `;
     } else {
       likedSongsList.innerHTML = likedSongs.map((song, index) => `
-        <div class="song-item" onclick="musicPlayer.playSong(${JSON.stringify(song).replace(/"/g, '&quot;')})">
+        <div class="song-item" onclick="musicPlayer.playSong(${JSON.stringify(song).replace(/"/g, '"')})">
           <span class="song-number">${index + 1}</span>
           <img src="${song.artwork}" alt="${song.title}" class="song-artwork">
           <div class="song-info">
@@ -607,7 +656,7 @@ class MusicPlayer {
       `;
     } else {
       downloadsList.innerHTML = this.downloads.map((song, index) => `
-        <div class="song-item" onclick="musicPlayer.playSong(${JSON.stringify(song).replace(/"/g, '&quot;')})">
+        <div class="song-item" onclick="musicPlayer.playSong(${JSON.stringify(song).replace(/"/g, '"')})">
           <span class="song-number">${index + 1}</span>
           <img src="${song.artwork}" alt="${song.title}" class="song-artwork">
           <div class="song-info">
@@ -688,7 +737,7 @@ class MusicPlayer {
       queueList.innerHTML = '<p style="color: rgba(255, 255, 255, 0.7); text-align: center;">No upcoming songs</p>';
     } else {
       queueList.innerHTML = upcomingSongs.map(song => `
-        <div class="queue-item" onclick="musicPlayer.playSong(${JSON.stringify(song).replace(/"/g, '&quot;')})">
+        <div class="queue-item" onclick="musicPlayer.playSong(${JSON.stringify(song).replace(/"/g, '"')})">
           <img src="${song.artwork}" alt="${song.title}">
           <div class="queue-item-info">
             <div class="queue-item-title">${song.title}</div>

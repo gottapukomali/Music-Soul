@@ -11,8 +11,14 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <div class="logo-icon">🎵</div>
+      <div class="logo-icon">
+        <img src="m.png" alt="Music Soul Logo" class="logo-image">
+      </div>
       <span class="logo-text">Music Soul</span>
+      <button class="home-btn" onclick="musicPlayer.showPage('home')">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </button>
     </div>
     
     <div class="search-container">
@@ -29,6 +35,11 @@
 
   <!-- Main Layout -->
   <div class="main-layout">
+    <!-- Left Sidebar Toggle Button -->
+    <button class="sidebar-toggle-btn left-toggle" id="leftToggle">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
@@ -52,83 +63,130 @@
 
     <!-- Main Content -->
     <main class="main-content">
-      <!-- Home Page -->
-      <div id="home-page" class="page active">
-        <div class="page-header">
-          <h1>Welcome back!</h1>
-          <p>Discover your favorite music</p>
-        </div>
-        
-        <section class="featured-section">
-          <h2>Recently Played</h2>
-          <div class="music-grid" id="recentlyPlayed">
-            <!-- Dynamic content will be loaded here -->
+      <div class="content-wrapper">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+          <div class="page-header">
+            <h1>Welcome back!</h1>
+            <p>Discover your favorite music</p>
           </div>
-        </section>
-        
-        <section class="featured-section">
-          <h2>Popular Albums</h2>
-          <div class="music-grid" id="popularAlbums">
-            <!-- Dynamic content will be loaded here -->
+          
+          <section class="featured-section">
+            <h2>Recently Played</h2>
+            <div class="music-grid" id="recentlyPlayed">
+              <!-- Dynamic content will be loaded here -->
+            </div>
+          </section>
+          
+          <section class="featured-section">
+            <h2>Popular Albums</h2>
+            <div class="music-grid" id="popularAlbums">
+              <!-- Dynamic content will be loaded here -->
+            </div>
+          </section>
+        </div>
+
+        <!-- Liked Songs Page -->
+        <div id="liked-page" class="page">
+          <div class="page-header">
+            <h1><i class="fas fa-heart"></i> Liked Songs</h1>
+            <p id="likedCount">0 songs</p>
           </div>
-        </section>
+          <div class="song-list" id="likedSongsList">
+            <!-- Liked songs will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Playlists Page -->
+        <div id="playlists-page" class="page">
+          <div class="page-header">
+            <h1><i class="fas fa-list"></i> Your Playlists</h1>
+            <button class="create-playlist-btn" id="createPlaylistBtn">
+              <i class="fas fa-plus"></i> Create Playlist
+            </button>
+          </div>
+          <div class="playlists-grid" id="playlistsGrid">
+            <!-- Playlists will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Albums Page -->
+        <div id="albums-page" class="page">
+          <div class="page-header">
+            <h1><i class="fas fa-compact-disc"></i> Albums</h1>
+          </div>
+          <div class="music-grid" id="albumsGrid">
+            <!-- Albums will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Artists Page -->
+        <div id="artists-page" class="page">
+          <div class="page-header">
+            <h1><i class="fas fa-microphone"></i> Artists</h1>
+          </div>
+          <div class="artists-grid" id="artistsGrid">
+            <!-- Artists will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Downloads Page -->
+        <div id="downloads-page" class="page">
+          <div class="page-header">
+            <h1><i class="fas fa-download"></i> Downloads</h1>
+            <p id="downloadCount">0 downloaded songs</p>
+          </div>
+          <div class="song-list" id="downloadsList">
+            <!-- Downloaded songs will be loaded here -->
+          </div>
+        </div>
       </div>
 
-      <!-- Liked Songs Page -->
-      <div id="liked-page" class="page">
-        <div class="page-header">
-          <h1><i class="fas fa-heart"></i> Liked Songs</h1>
-          <p id="likedCount">0 songs</p>
+      <!-- Footer -->
+      <footer class="main-footer">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Music Soul</h4>
+            <p>Your ultimate music streaming experience</p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#" onclick="musicPlayer.showPage('home')">Home</a></li>
+              <li><a href="#" onclick="musicPlayer.showPage('playlists')">Playlists</a></li>
+              <li><a href="#" onclick="musicPlayer.showPage('albums')">Albums</a></li>
+              <li><a href="#" onclick="musicPlayer.showPage('artists')">Artists</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Connect</h4>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-spotify"></i></a>
+            </div>
+          </div>
         </div>
-        <div class="song-list" id="likedSongsList">
-          <!-- Liked songs will be loaded here -->
+        <div class="footer-bottom">
+          <p>&copy; 2025 Music Soul. All rights reserved.</p>
         </div>
-      </div>
-
-      <!-- Playlists Page -->
-      <div id="playlists-page" class="page">
-        <div class="page-header">
-          <h1><i class="fas fa-list"></i> Your Playlists</h1>
-          <button class="create-playlist-btn" id="createPlaylistBtn">
-            <i class="fas fa-plus"></i> Create Playlist
-          </button>
-        </div>
-        <div class="playlists-grid" id="playlistsGrid">
-          <!-- Playlists will be loaded here -->
-        </div>
-      </div>
-
-      <!-- Albums Page -->
-      <div id="albums-page" class="page">
-        <div class="page-header">
-          <h1><i class="fas fa-compact-disc"></i> Albums</h1>
-        </div>
-        <div class="music-grid" id="albumsGrid">
-          <!-- Albums will be loaded here -->
-        </div>
-      </div>
-
-      <!-- Artists Page -->
-      <div id="artists-page" class="page">
-        <div class="page-header">
-          <h1><i class="fas fa-microphone"></i> Artists</h1>
-        </div>
-        <div class="artists-grid" id="artistsGrid">
-          <!-- Artists will be loaded here -->
-        </div>
-      </div>
-
-      <!-- Downloads Page -->
-      <div id="downloads-page" class="page">
-        <div class="page-header">
-          <h1><i class="fas fa-download"></i> Downloads</h1>
-          <p id="downloadCount">0 downloaded songs</p>
-        </div>
-        <div class="song-list" id="downloadsList">
-          <!-- Downloaded songs will be loaded here -->
-        </div>
-      </div>
+      </footer>
     </main>
+
+    <!-- Right Sidebar Toggle Button -->
+    <button class="sidebar-toggle-btn right-toggle" id="rightToggle">
+      <i class="fas fa-chevron-right"></i>
+    </button>
 
     <!-- Right Sidebar (Now Playing) -->
     <aside class="right-sidebar" id="rightSidebar">
