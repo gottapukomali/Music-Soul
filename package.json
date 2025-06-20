@@ -1,18 +1,20 @@
 {
-  "name": "music-soul",
+  "name": "music",
   "version": "1.0.0",
-  "description": "Music Soul - Your Music Streaming Experience",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
     "cors": "^2.8.5",
-    "path": "^0.12.7"
-  },
-  "keywords": ["music", "streaming", "player"],
-  "author": "Music Soul",
-  "license": "MIT"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "firebase": "^11.9.1",
+    "firebase-admin": "^13.4.0",
+    "node-fetch": "^2.7.0"
+  }
 }

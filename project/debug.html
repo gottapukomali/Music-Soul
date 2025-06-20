@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Soul - Debug Console</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #00ff00;
+            margin: 0;
+            padding: 20px;
+        }
+        .debug-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .debug-section {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+        .debug-title {
+            color: #f7a520;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .debug-item {
+            margin-bottom: 8px;
+            padding: 5px;
+            background: #333;
+            border-radius: 4px;
+        }
+        .status-ok { color: #00ff00; }
+        .status-error { color: #ff4444; }
+        .status-warning { color: #ffaa00; }
+        button {
+            background: #f7a520;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #ff6b35;
+        }
+        #console-output {
+            background: #000;
+            color: #00ff00;
+            padding: 10px;
+            border-radius: 4px;
+            height: 200px;
+            overflow-y: auto;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1 style="color: #f7a520; text-align: center;">🎵 Music Soul Debug Console</h1>
+        
+        <div class="debug-section">
+            <div class="debug-title">System Status</div>
+            <div id="system-status"></div>
+        </div>
+        
+        <div class="debug-section">
+            <div class="debug-title">Audio System</div>
+            <div id="audio-status"></div>
+            <button onclick="testAudio()">Test Audio</button>
+            <button onclick="checkAudioFormats()">Check Supported Formats</button>
+        </div>
+        
+        <div class="debug-section">
+            <div class="debug-title">Local Storage</div>
+            <div id="storage-status"></div>
+            <button onclick="clearStorage()">Clear All Data</button>
+            <button onclick="exportData()">Export Data</button>
+        </div>
+        
+        <div class="debug-section">
+            <div class="debug-title">Network Status</div>
+            <div id="network-status"></div>
+            <button onclick="testConnections()">Test Connections</button>
+        </div>
+        
+        <div class="debug-section">
+            <div class="debug-title">Console Output</div>
+            <div id="console-output"></div>
+            <button onclick="clearConsole()">Clear Console</button>
+        </div>
+        
+        <div class="debug-section">
+            <div class="debug-title">Quick Actions</div>
+            <button onclick="window.location.href='index.html'">Back to App</button>
+            <button onclick="location.reload()">Refresh Debug</button>
+            <button onclick="runFullDiagnostic()">Full Diagnostic</button>
+        </div>
+    </div>
+
+    <script>
+        // Console capture
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        const consoleOutput = document.getElementById('console-output');
+        
+        function addToConsole(message, type = 'log') {
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#ff4444' : type === 'warn' ? '#ffaa00' : '#00ff00';
+            consoleOutput.innerHTML += `<span style="color: ${color}">[${timestamp}] ${message}</span>\n`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToConsole(args.join(' '), 'log');
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToConsole(args.join(' '), 'error');
+        };
+        
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addToConsole(args.join(' '), 'warn');
+        };
+        
+        // System checks
+        function checkSystemStatus() {
+            const systemStatus = document.getElementById('system-status');
+            let status = '';
+            
+            // Browser info
+            status += `<div class="debug-item status-ok">Browser: ${navigator.userAgent}</div>`;
+            status += `<div class="debug-item status-ok">Screen: ${screen.width}x${screen.height}</div>`;
+            status += `<div class="debug-item status-ok">Viewport: ${window.innerWidth}x${window.innerHeight}</div>`;
+            
+            // Feature detection
+            const features = {
+                'Audio API': !!window.Audio,
+                'Local Storage': !!window.localStorage,
+                'Session Storage': !!window.sessionStorage,
+                'Fetch API': !!window.fetch,
+                'Web Audio API': !!(window.AudioContext || window.webkitAudioContext),
+                'Media Session API': !!navigator.mediaSession
+            };
+            
+            for (const [feature, supported] of Object.entries(features)) {
+                const statusClass = supported ? 'status-ok' : 'status-error';
+                status += `<div class="debug-item ${statusClass}">${feature}: ${supported ? 'Supported' : 'Not Supported'}</div>`;
+            }
+            
+            systemStatus.innerHTML = status;
+        }
+        
+        function checkAudioStatus() {
+            const audioStatus = document.getElementById('audio-status');
+            let status = '';
+            
+            try {
+                const audio = new Audio();
+                status += `<div class="debug-item status-ok">Audio object created successfully</div>`;
+                
+                // Check audio formats
+                const formats = {
+                    'MP3': audio.canPlayType('audio/mpeg'),
+                    'WAV': audio.canPlayType('audio/wav'),
+                    'OGG': audio.canPlayType('audio/ogg'),
+                    'AAC': audio.canPlayType('audio/aac'),
+                    'FLAC': audio.canPlayType('audio/flac')
+                };
+                
+                for (const [format, support] of Object.entries(formats)) {
+                    const level = support === 'probably' ? 'status-ok' : support === 'maybe' ? 'status-warning' : 'status-error';
+                    status += `<div class="debug-item ${level}">${format}: ${support || 'Not supported'}</div>`;
+                }
+                
+                // Check if musicPlayer exists
+                if (typeof musicPlayer !== 'undefined') {
+                    status += `<div class="debug-item status-ok">Music Player: Initialized</div>`;
+                    status += `<div class="debug-item status-ok">Current Song: ${musicPlayer.currentSong?.title || 'None'}</div>`;
+                    status += `<div class="debug-item status-ok">Queue Length: ${musicPlayer.queue?.length || 0}</div>`;
+                    status += `<div class="debug-item status-ok">Volume: ${Math.round((musicPlayer.volume || 0) * 100)}%</div>`;
+                } else {
+                    status += `<div class="debug-item status-error">Music Player: Not initialized</div>`;
+                }
+                
+            } catch (error) {
+                status += `<div class="debug-item status-error">Audio Error: ${error.message}</div>`;
+            }
+            
+            audioStatus.innerHTML = status;
+        }
+        
+        function checkStorageStatus() {
+            const storageStatus = document.getElementById('storage-status');
+            let status = '';
+            
+            try {
+                const likedSongs = JSON.parse(localStorage.getItem('likedSongs') || '[]');
+                const playlists = JSON.parse(localStorage.getItem('playlists') || '[]');
+                const downloads = JSON.parse(localStorage.getItem('downloads') || '[]');
+                
+                status += `<div class="debug-item status-ok">Liked Songs: ${likedSongs.length}</div>`;
+                status += `<div class="debug-item status-ok">Playlists: ${playlists.length}</div>`;
+                status += `<div class="debug-item status-ok">Downloads: ${downloads.length}</div>`;
+                
+                // Storage usage
+                let totalSize = 0;
+                for (let key in localStorage) {
+                    if (localStorage.hasOwnProperty(key)) {
+                        totalSize += localStorage[key].length;
+                    }
+                }
+                status += `<div class="debug-item status-ok">Storage Used: ${(totalSize / 1024).toFixed(2)} KB</div>`;
+                
+            } catch (error) {
+                status += `<div class="debug-item status-error">Storage Error: ${error.message}</div>`;
+            }
+            
+            storageStatus.innerHTML = status;
+        }
+        
+        function checkNetworkStatus() {
+            const networkStatus = document.getElementById('network-status');
+            let status = '';
+            
+            status += `<div class="debug-item ${navigator.onLine ? 'status-ok' : 'status-error'}">Online: ${navigator.onLine}</div>`;
+            status += `<div class="debug-item status-ok">Connection: ${navigator.connection?.effectiveType || 'Unknown'}</div>`;
+            
+            networkStatus.innerHTML = status;
+        }
+        
+        // Test functions
+        function testAudio() {
+            console.log('Testing audio playback...');
+            try {
+                const audio = new Audio('https://www.soundjay.com/misc/sounds/bell-ringing-05.wav');
+                audio.play().then(() => {
+                    console.log('Audio test successful');
+                    setTimeout(() => audio.pause(), 2000);
+                }).catch(error => {
+                    console.error('Audio test failed:', error);
+                });
+            } catch (error) {
+                console.error('Audio test error:', error);
+            }
+        }
+        
+        function checkAudioFormats() {
+            console.log('Checking audio format support...');
+            const audio = new Audio();
+            const formats = [
+                'audio/mpeg',
+                'audio/wav',
+                'audio/ogg',
+                'audio/aac',
+                'audio/flac',
+                'audio/mp4',
+                'audio/webm'
+            ];
+            
+            formats.forEach(format => {
+                const support = audio.canPlayType(format);
+                console.log(`${format}: ${support || 'Not supported'}`);
+            });
+        }
+        
+        function clearStorage() {
+            if (confirm('Are you sure you want to clear all stored data?')) {
+                localStorage.clear();
+                console.log('Local storage cleared');
+                checkStorageStatus();
+            }
+        }
+        
+        function exportData() {
+            const data = {
+                likedSongs: JSON.parse(localStorage.getItem('likedSongs') || '[]'),
+                playlists: JSON.parse(localStorage.getItem('playlists') || '[]'),
+                downloads: JSON.parse(localStorage.getItem('downloads') || '[]')
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'music-soul-data.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            console.log('Data exported successfully');
+        }
+        
+        function testConnections() {
+            console.log('Testing network connections...');
+            
+            const testUrls = [
+                'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+                'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg',
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
+            ];
+            
+            testUrls.forEach(url => {
+                fetch(url, { method: 'HEAD' })
+                    .then(response => {
+                        console.log(`${url}: ${response.status} ${response.statusText}`);
+                    })
+                    .catch(error => {
+                        console.error(`${url}: Failed - ${error.message}`);
+                    });
+            });
+        }
+        
+        function clearConsole() {
+            consoleOutput.innerHTML = '';
+        }
+        
+        function runFullDiagnostic() {
+            console.log('=== FULL DIAGNOSTIC STARTED ===');
+            checkSystemStatus();
+            checkAudioStatus();
+            checkStorageStatus();
+            checkNetworkStatus();
+            testConnections();
+            checkAudioFormats();
+            console.log('=== FULL DIAGNOSTIC COMPLETED ===');
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Debug console initialized');
+            runFullDiagnostic();
+        });
+        
+        // Auto-refresh status every 30 seconds
+        setInterval(() => {
+            checkSystemStatus();
+            checkAudioStatus();
+            checkStorageStatus();
+            checkNetworkStatus();
+        }, 30000);
+    </script>
+</body>
+</html>
