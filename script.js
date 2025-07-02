@@ -121,6 +121,32 @@ class MusicSoul {
         this.init();
     }
 
+    // Helper method to safely get DOM elements
+    safeGetElement(selector, context = document) {
+        try {
+            const element = context.querySelector(selector);
+            if (!element) {
+                console.warn(`Element not found: ${selector}`);
+                return null;
+            }
+            return element;
+        } catch (error) {
+            console.error(`Error selecting element ${selector}:`, error);
+            return null;
+        }
+    }
+
+    // Helper method to safely get multiple DOM elements
+    safeGetElements(selector, context = document) {
+        try {
+            const elements = context.querySelectorAll(selector);
+            return Array.from(elements);
+        } catch (error) {
+            console.error(`Error selecting elements ${selector}:`, error);
+            return [];
+        }
+    }
+
     init() {
         this.loadPreferences();
         this.setupEventListeners();
@@ -156,24 +182,36 @@ class MusicSoul {
 
     setupEventListeners() {
         // Theme toggle
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            this.toggleTheme();
-        });
+        const themeToggle = this.safeGetElement('#theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                this.toggleTheme();
+            });
+        }
 
         // Panel toggles
-        document.getElementById('left-panel-toggle').addEventListener('click', () => {
-            this.toggleLeftPanel();
-        });
+        const leftPanelToggle = this.safeGetElement('#left-panel-toggle');
+        if (leftPanelToggle) {
+            leftPanelToggle.addEventListener('click', () => {
+                this.toggleLeftPanel();
+            });
+        }
 
-        document.getElementById('right-panel-toggle').addEventListener('click', () => {
-            this.toggleRightPanel();
-        });
+        const rightPanelToggle = this.safeGetElement('#right-panel-toggle');
+        if (rightPanelToggle) {
+            rightPanelToggle.addEventListener('click', () => {
+                this.toggleRightPanel();
+            });
+        }
 
         // Profile dropdown
-        document.getElementById('profile-btn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            this.toggleProfileDropdown();
-        });
+        const profileBtn = this.safeGetElement('#profile-btn');
+        if (profileBtn) {
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.toggleProfileDropdown();
+            });
+        }
 
         // Close dropdown when clicking outside
         document.addEventListener('click', () => {
@@ -181,48 +219,79 @@ class MusicSoul {
         });
 
         // Audio player controls
-        document.getElementById('play-pause-btn').addEventListener('click', () => {
-            this.togglePlayPause();
-        });
+        const playPauseBtn = this.safeGetElement('#play-pause-btn');
+        if (playPauseBtn) {
+            playPauseBtn.addEventListener('click', () => {
+                this.togglePlayPause();
+            });
+        }
 
-        document.getElementById('like-btn').addEventListener('click', () => {
-            this.toggleLike();
-        });
+        const likeBtn = this.safeGetElement('#like-btn');
+        if (likeBtn) {
+            likeBtn.addEventListener('click', () => {
+                this.toggleLike();
+            });
+        }
 
-        document.getElementById('shuffle-btn').addEventListener('click', () => {
-            this.toggleShuffle();
-        });
+        const shuffleBtn = this.safeGetElement('#shuffle-btn');
+        if (shuffleBtn) {
+            shuffleBtn.addEventListener('click', () => {
+                this.toggleShuffle();
+            });
+        }
 
-        document.getElementById('repeat-btn').addEventListener('click', () => {
-            this.toggleRepeat();
-        });
+        const repeatBtn = this.safeGetElement('#repeat-btn');
+        if (repeatBtn) {
+            repeatBtn.addEventListener('click', () => {
+                this.toggleRepeat();
+            });
+        }
 
-        document.getElementById('mute-btn').addEventListener('click', () => {
-            this.toggleMute();
-        });
+        const muteBtn = this.safeGetElement('#mute-btn');
+        if (muteBtn) {
+            muteBtn.addEventListener('click', () => {
+                this.toggleMute();
+            });
+        }
 
         // Progress and volume sliders
-        document.getElementById('progress-bar').addEventListener('input', (e) => {
-            this.updateProgress(e.target.value);
-        });
+        const progressBar = this.safeGetElement('#progress-bar');
+        if (progressBar) {
+            progressBar.addEventListener('input', (e) => {
+                this.updateProgress(e.target.value);
+            });
+        }
 
-        document.getElementById('volume-slider').addEventListener('input', (e) => {
-            this.updateVolume(e.target.value);
-        });
+        const volumeSlider = this.safeGetElement('#volume-slider');
+        if (volumeSlider) {
+            volumeSlider.addEventListener('input', (e) => {
+                this.updateVolume(e.target.value);
+            });
+        }
 
         // Horizontal scroll controls
-        document.getElementById('scroll-left').addEventListener('click', () => {
-            this.scrollHorizontal('left');
-        });
+        const scrollLeft = this.safeGetElement('#scroll-left');
+        if (scrollLeft) {
+            scrollLeft.addEventListener('click', () => {
+                this.scrollHorizontal('left');
+            });
+        }
 
-        document.getElementById('scroll-right').addEventListener('click', () => {
-            this.scrollHorizontal('right');
-        });
+        const scrollRight = this.safeGetElement('#scroll-right');
+        if (scrollRight) {
+            scrollRight.addEventListener('click', () => {
+                this.scrollHorizontal('right');
+            });
+        }
 
         // Mobile navigation
-        document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+        const mobileNavBtns = this.safeGetElements('.mobile-nav-btn');
+        mobileNavBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                this.setActiveTab(btn.dataset.tab);
+                const tab = btn.dataset.tab;
+                if (tab) {
+                    this.setActiveTab(tab);
+                }
             });
         });
 
@@ -252,17 +321,21 @@ class MusicSoul {
     }
 
     hideMainContent() {
-        const mainContent = document.getElementById('main-content');
-        mainContent.style.opacity = '0';
-        mainContent.style.pointerEvents = 'none';
-        this.isHidden = true;
+        const mainContent = this.safeGetElement('#main-content');
+        if (mainContent) {
+            mainContent.style.opacity = '0';
+            mainContent.style.pointerEvents = 'none';
+            this.isHidden = true;
+        }
     }
 
     showMainContent() {
-        const mainContent = document.getElementById('main-content');
-        mainContent.style.opacity = '1';
-        mainContent.style.pointerEvents = 'auto';
-        this.isHidden = false;
+        const mainContent = this.safeGetElement('#main-content');
+        if (mainContent) {
+            mainContent.style.opacity = '1';
+            mainContent.style.pointerEvents = 'auto';
+            this.isHidden = false;
+        }
     }
 
     checkMobile() {
@@ -281,17 +354,25 @@ class MusicSoul {
     }
 
     updateTheme() {
-        const app = document.getElementById('app');
-        const themeToggle = document.getElementById('theme-toggle');
+        const app = this.safeGetElement('#app');
+        const themeToggle = this.safeGetElement('#theme-toggle');
         
-        if (this.isDarkTheme) {
-            app.classList.remove('light-theme');
-            app.className = 'min-h-screen font-poppins transition-colors duration-200 bg-gray-950 text-white';
-            themeToggle.innerHTML = '<i data-lucide="sun" class="w-4 h-4"></i><span>Switch to Light Theme</span>';
-        } else {
-            app.classList.add('light-theme');
-            app.className = 'min-h-screen font-poppins transition-colors duration-200 bg-gray-50 text-gray-900 light-theme';
-            themeToggle.innerHTML = '<i data-lucide="moon" class="w-4 h-4"></i><span>Switch to Dark Theme</span>';
+        if (app) {
+            if (this.isDarkTheme) {
+                app.classList.remove('light-theme');
+                app.className = 'min-h-screen font-poppins transition-colors duration-200 bg-gray-950 text-white';
+            } else {
+                app.classList.add('light-theme');
+                app.className = 'min-h-screen font-poppins transition-colors duration-200 bg-gray-50 text-gray-900 light-theme';
+            }
+        }
+        
+        if (themeToggle) {
+            if (this.isDarkTheme) {
+                themeToggle.innerHTML = '<i data-lucide="sun" class="w-4 h-4"></i><span>Switch to Light Theme</span>';
+            } else {
+                themeToggle.innerHTML = '<i data-lucide="moon" class="w-4 h-4"></i><span>Switch to Dark Theme</span>';
+            }
         }
         
         // Reinitialize icons after theme change
@@ -313,48 +394,70 @@ class MusicSoul {
     }
 
     updatePanelStates() {
-        const leftPanel = document.getElementById('left-panel');
-        const rightPanel = document.getElementById('right-panel');
-        const mainContent = document.getElementById('main-content');
+        const leftPanel = this.safeGetElement('#left-panel');
+        const rightPanel = this.safeGetElement('#right-panel');
+        const mainContent = this.safeGetElement('#main-content');
 
         if (this.isMobile) {
             // Mobile behavior
-            leftPanel.classList.toggle('open', this.leftPanelOpen);
-            rightPanel.classList.toggle('open', this.rightPanelOpen);
+            if (leftPanel) {
+                leftPanel.classList.toggle('open', this.leftPanelOpen);
+            }
+            if (rightPanel) {
+                rightPanel.classList.toggle('open', this.rightPanelOpen);
+            }
         } else {
             // Desktop behavior
-            if (this.leftPanelOpen) {
-                leftPanel.style.width = '16rem';
-                mainContent.style.left = '16rem';
-            } else {
-                leftPanel.style.width = '4rem';
-                mainContent.style.left = '4rem';
+            if (leftPanel && mainContent) {
+                if (this.leftPanelOpen) {
+                    leftPanel.style.width = '16rem';
+                    mainContent.style.left = '16rem';
+                } else {
+                    leftPanel.style.width = '4rem';
+                    mainContent.style.left = '4rem';
+                }
             }
 
-            if (this.rightPanelOpen) {
-                rightPanel.style.width = '20rem';
-                mainContent.style.right = '20rem';
-            } else {
-                rightPanel.style.width = '4rem';
-                mainContent.style.right = '4rem';
+            if (rightPanel && mainContent) {
+                if (this.rightPanelOpen) {
+                    rightPanel.style.width = '20rem';
+                    mainContent.style.right = '20rem';
+                } else {
+                    rightPanel.style.width = '4rem';
+                    mainContent.style.right = '4rem';
+                }
             }
         }
     }
 
     toggleProfileDropdown() {
-        const dropdown = document.getElementById('profile-dropdown');
-        dropdown.classList.toggle('hidden');
+        const dropdown = this.safeGetElement('#profile-dropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('hidden');
+        }
     }
 
     closeProfileDropdown() {
-        const dropdown = document.getElementById('profile-dropdown');
-        dropdown.classList.add('hidden');
+        const dropdown = this.safeGetElement('#profile-dropdown');
+        if (dropdown) {
+            dropdown.classList.add('hidden');
+        }
     }
 
     togglePlayPause() {
         this.isPlaying = !this.isPlaying;
-        const btn = document.getElementById('play-pause-btn');
+        const btn = this.safeGetElement('#play-pause-btn');
+        
+        if (!btn) {
+            console.error('Play/pause button not found');
+            return;
+        }
+        
         const icon = btn.querySelector('i');
+        if (!icon) {
+            console.error('Play/pause icon not found');
+            return;
+        }
         
         if (this.isPlaying) {
             icon.setAttribute('data-lucide', 'pause');
@@ -369,8 +472,18 @@ class MusicSoul {
 
     toggleLike() {
         this.isLiked = !this.isLiked;
-        const btn = document.getElementById('like-btn');
+        const btn = this.safeGetElement('#like-btn');
+        
+        if (!btn) {
+            console.error('Like button not found');
+            return;
+        }
+        
         const icon = btn.querySelector('i');
+        if (!icon) {
+            console.error('Like icon not found');
+            return;
+        }
         
         if (this.isLiked) {
             btn.classList.add('text-yellow-400');
@@ -385,7 +498,12 @@ class MusicSoul {
 
     toggleShuffle() {
         this.isShuffled = !this.isShuffled;
-        const btn = document.getElementById('shuffle-btn');
+        const btn = this.safeGetElement('#shuffle-btn');
+        
+        if (!btn) {
+            console.error('Shuffle button not found');
+            return;
+        }
         
         if (this.isShuffled) {
             btn.classList.add('text-yellow-400', 'bg-yellow-400/20');
@@ -398,7 +516,12 @@ class MusicSoul {
 
     toggleRepeat() {
         this.repeatMode = (this.repeatMode + 1) % 3;
-        const btn = document.getElementById('repeat-btn');
+        const btn = this.safeGetElement('#repeat-btn');
+        
+        if (!btn) {
+            console.error('Repeat button not found');
+            return;
+        }
         
         if (this.repeatMode > 0) {
             btn.classList.add('text-yellow-400', 'bg-yellow-400/20');
@@ -411,16 +534,30 @@ class MusicSoul {
 
     toggleMute() {
         this.isMuted = !this.isMuted;
-        const btn = document.getElementById('mute-btn');
+        const btn = this.safeGetElement('#mute-btn');
+        const volumeSlider = this.safeGetElement('#volume-slider');
+        
+        if (!btn) {
+            console.error('Mute button not found');
+            return;
+        }
+        
         const icon = btn.querySelector('i');
-        const volumeSlider = document.getElementById('volume-slider');
+        if (!icon) {
+            console.error('Mute icon not found');
+            return;
+        }
         
         if (this.isMuted) {
             icon.setAttribute('data-lucide', 'volume-x');
-            volumeSlider.value = 0;
+            if (volumeSlider) {
+                volumeSlider.value = 0;
+            }
         } else {
             icon.setAttribute('data-lucide', 'volume-2');
-            volumeSlider.value = this.volume;
+            if (volumeSlider) {
+                volumeSlider.value = this.volume;
+            }
         }
         
         this.updateVolumeSlider();
@@ -432,14 +569,19 @@ class MusicSoul {
 
     updateProgress(value) {
         this.progress = parseInt(value);
-        const progressBar = document.getElementById('progress-bar');
-        const currentTime = Math.floor((this.progress / 100) * 240);
+        const progressBar = this.safeGetElement('#progress-bar');
+        const currentTimeEl = this.safeGetElement('#current-time');
         
-        document.getElementById('current-time').textContent = this.formatTime(currentTime);
+        if (currentTimeEl) {
+            const currentTime = Math.floor((this.progress / 100) * 240);
+            currentTimeEl.textContent = this.formatTime(currentTime);
+        }
         
         // Update slider background
-        const percentage = this.progress;
-        progressBar.style.background = `linear-gradient(to right, #f5b70c 0%, #f5b70c ${percentage}%, ${this.isDarkTheme ? '#4B5563' : '#D1D5DB'} ${percentage}%, ${this.isDarkTheme ? '#4B5563' : '#D1D5DB'} 100%)`;
+        if (progressBar) {
+            const percentage = this.progress;
+            progressBar.style.background = `linear-gradient(to right, #f5b70c 0%, #f5b70c ${percentage}%, ${this.isDarkTheme ? '#4B5563' : '#D1D5DB'} ${percentage}%, ${this.isDarkTheme ? '#4B5563' : '#D1D5DB'} 100%)`;
+        }
     }
 
     updateVolume(value) {
@@ -449,27 +591,32 @@ class MusicSoul {
     }
 
     updateVolumeSlider() {
-        const volumeSlider = document.getElementById('volume-slider');
-        const displayVolume = this.isMuted ? 0 : this.volume;
+        const volumeSlider = this.safeGetElement('#volume-slider');
         
-        volumeSlider.style.background = `linear-gradient(to right, #f5b70c 0%, #f5b70c ${displayVolume}%, ${this.isDarkTheme ? '#4B5563' : '#D1D5DB'} ${displayVolume}%, ${this.isDarkTheme ? '#4B5563' : '#D1D5DB'} 100%)`;
+        if (volumeSlider) {
+            const displayVolume = this.isMuted ? 0 : this.volume;
+            volumeSlider.style.background = `linear-gradient(to right, #f5b70c 0%, #f5b70c ${displayVolume}%, ${this.isDarkTheme ? '#4B5563' : '#D1D5DB'} ${displayVolume}%, ${this.isDarkTheme ? '#4B5563' : '#D1D5DB'} 100%)`;
+        }
     }
 
     scrollHorizontal(direction) {
-        const scrollContainer = document.getElementById('horizontal-scroll');
-        const scrollAmount = 320;
+        const scrollContainer = this.safeGetElement('#horizontal-scroll');
         
-        scrollContainer.scrollBy({
-            left: direction === 'left' ? -scrollAmount : scrollAmount,
-            behavior: 'smooth'
-        });
+        if (scrollContainer) {
+            const scrollAmount = 320;
+            scrollContainer.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
+        }
     }
 
     setActiveTab(tab) {
         this.activeTab = tab;
         
         // Update mobile nav buttons
-        document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+        const mobileNavBtns = this.safeGetElements('.mobile-nav-btn');
+        mobileNavBtns.forEach(btn => {
             btn.classList.remove('active');
             if (btn.dataset.tab === tab) {
                 btn.classList.add('active');
@@ -496,13 +643,17 @@ class MusicSoul {
     }
 
     updateGreeting() {
-        const hour = new Date().getHours();
-        let greeting = "Good evening";
+        const greetingEl = this.safeGetElement('#greeting');
         
-        if (hour < 12) greeting = "Good morning";
-        else if (hour < 18) greeting = "Good afternoon";
-        
-        document.getElementById('greeting').textContent = greeting;
+        if (greetingEl) {
+            const hour = new Date().getHours();
+            let greeting = "Good evening";
+            
+            if (hour < 12) greeting = "Good morning";
+            else if (hour < 18) greeting = "Good afternoon";
+            
+            greetingEl.textContent = greeting;
+        }
     }
 
     formatTime(seconds) {
@@ -519,13 +670,29 @@ class MusicSoul {
             artwork: song.artwork
         };
         
-        // Update current song display
-        document.getElementById('current-song-title').textContent = song.title;
-        document.getElementById('current-song-artist').textContent = song.artist;
-        document.getElementById('current-song-artwork').src = song.artwork;
-        document.getElementById('player-song-title').textContent = song.title;
-        document.getElementById('player-song-artist').textContent = song.artist;
-        document.getElementById('player-song-artwork').src = song.artwork;
+        // Update current song display with safe element access
+        const elements = {
+            'current-song-title': song.title,
+            'current-song-artist': song.artist,
+            'player-song-title': song.title,
+            'player-song-artist': song.artist
+        };
+        
+        Object.entries(elements).forEach(([id, text]) => {
+            const element = this.safeGetElement(`#${id}`);
+            if (element) {
+                element.textContent = text;
+            }
+        });
+        
+        // Update artwork
+        const artworkElements = ['#current-song-artwork', '#player-song-artwork'];
+        artworkElements.forEach(selector => {
+            const element = this.safeGetElement(selector);
+            if (element) {
+                element.src = song.artwork;
+            }
+        });
         
         // Auto-play
         this.isPlaying = true;
@@ -541,7 +708,9 @@ class MusicSoul {
     }
 
     populateQuickAccess() {
-        const container = document.getElementById('quick-access-grid');
+        const container = this.safeGetElement('#quick-access-grid');
+        if (!container) return;
+        
         container.innerHTML = '';
         
         this.musicData.quickAccess.forEach((item, index) => {
@@ -551,7 +720,9 @@ class MusicSoul {
     }
 
     populateRecentlyPlayed() {
-        const container = document.getElementById('recently-played-list');
+        const container = this.safeGetElement('#recently-played-list');
+        if (!container) return;
+        
         container.innerHTML = '';
         
         this.musicData.recentlyPlayed.forEach((item, index) => {
@@ -561,7 +732,9 @@ class MusicSoul {
     }
 
     populateFeaturedPlaylists() {
-        const container = document.getElementById('featured-playlists-list');
+        const container = this.safeGetElement('#featured-playlists-list');
+        if (!container) return;
+        
         container.innerHTML = '';
         
         this.musicData.featuredPlaylists.forEach((item, index) => {
@@ -571,7 +744,9 @@ class MusicSoul {
     }
 
     populateTrending() {
-        const container = document.getElementById('trending-list');
+        const container = this.safeGetElement('#trending-list');
+        if (!container) return;
+        
         container.innerHTML = '';
         
         this.musicData.recentlyPlayed.forEach((item, index) => {
@@ -581,7 +756,9 @@ class MusicSoul {
     }
 
     populateUpNext() {
-        const container = document.getElementById('up-next-queue');
+        const container = this.safeGetElement('#up-next-queue');
+        if (!container) return;
+        
         container.innerHTML = '';
         
         this.musicData.upNextQueue.forEach((item, index) => {
@@ -611,9 +788,13 @@ class MusicSoul {
             </button>
         `;
         
-        div.querySelector('.play-btn').addEventListener('click', () => {
-            this.playSong(item);
-        });
+        const playBtn = div.querySelector('.play-btn');
+        if (playBtn) {
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.playSong(item);
+            });
+        }
         
         return div;
     }
@@ -641,9 +822,13 @@ class MusicSoul {
             </div>
         `;
         
-        div.querySelector('.play-btn').addEventListener('click', () => {
-            this.playSong(item);
-        });
+        const playBtn = div.querySelector('.play-btn');
+        if (playBtn) {
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.playSong(item);
+            });
+        }
         
         return div;
     }
@@ -676,9 +861,13 @@ class MusicSoul {
             </div>
         `;
         
-        div.querySelector('.play-btn').addEventListener('click', () => {
-            this.playSong(item);
-        });
+        const playBtn = div.querySelector('.play-btn');
+        if (playBtn) {
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.playSong(item);
+            });
+        }
         
         return div;
     }
