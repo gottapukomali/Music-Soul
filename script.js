@@ -1,4 +1,4 @@
-// Music Soul - Pure JavaScript Implementation
+// Music Soul - Pure JavaScript Implementation with Enhanced Navigation
 
 class MusicSoul {
     constructor() {
@@ -6,6 +6,7 @@ class MusicSoul {
         this.leftPanelOpen = true;
         this.rightPanelOpen = true;
         this.activeTab = 'home';
+        this.currentPage = 'home';
         this.isMobile = window.innerWidth < 768;
         this.isPlaying = false;
         this.isLiked = false;
@@ -114,6 +115,113 @@ class MusicSoul {
                     duration: "5:01",
                     artwork: "https://images.pexels.com/photos/1666021/pexels-photo-1666021.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
                 }
+            ],
+            likedSongs: [
+                {
+                    title: "Midnight Dreams",
+                    artist: "Luna Eclipse",
+                    album: "Nocturnal Vibes",
+                    dateAdded: "2 days ago",
+                    duration: "4:32",
+                    artwork: "https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                },
+                {
+                    title: "Synthwave Sunset",
+                    artist: "Neon Drive",
+                    album: "Retro Future",
+                    dateAdded: "1 week ago",
+                    duration: "3:45",
+                    artwork: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                },
+                {
+                    title: "Jazz Cafe",
+                    artist: "Smooth Notes",
+                    album: "Evening Sessions",
+                    dateAdded: "2 weeks ago",
+                    duration: "5:12",
+                    artwork: "https://images.pexels.com/photos/164938/pexels-photo-164938.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                }
+            ],
+            playlists: [
+                {
+                    title: "Chill Vibes",
+                    description: "Relaxing music for any time",
+                    songCount: 45,
+                    artwork: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                },
+                {
+                    title: "Workout Mix",
+                    description: "High energy tracks for your workout",
+                    songCount: 32,
+                    artwork: "https://images.pexels.com/photos/164938/pexels-photo-164938.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                },
+                {
+                    title: "Late Night Jazz",
+                    description: "Smooth jazz for late nights",
+                    songCount: 28,
+                    artwork: "https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                }
+            ],
+            albums: [
+                {
+                    title: "Nocturnal Vibes",
+                    artist: "Luna Eclipse",
+                    year: "2023",
+                    artwork: "https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                },
+                {
+                    title: "Retro Future",
+                    artist: "Neon Drive",
+                    year: "2023",
+                    artwork: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                },
+                {
+                    title: "Evening Sessions",
+                    artist: "Smooth Notes",
+                    year: "2022",
+                    artwork: "https://images.pexels.com/photos/164938/pexels-photo-164938.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                }
+            ],
+            artists: [
+                {
+                    name: "Luna Eclipse",
+                    followers: "1.2M",
+                    artwork: "https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                },
+                {
+                    name: "Neon Drive",
+                    followers: "890K",
+                    artwork: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                },
+                {
+                    name: "Smooth Notes",
+                    followers: "654K",
+                    artwork: "https://images.pexels.com/photos/164938/pexels-photo-164938.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                }
+            ],
+            downloads: [
+                {
+                    title: "Midnight Dreams",
+                    artist: "Luna Eclipse",
+                    size: "8.2 MB",
+                    artwork: "https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                },
+                {
+                    title: "Synthwave Sunset",
+                    artist: "Neon Drive",
+                    size: "7.8 MB",
+                    artwork: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                }
+            ],
+            languages: [
+                { code: 'en', name: 'English', flag: '🇺🇸' },
+                { code: 'es', name: 'Español', flag: '🇪🇸' },
+                { code: 'fr', name: 'Français', flag: '🇫🇷' },
+                { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+                { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+                { code: 'pt', name: 'Português', flag: '🇵🇹' },
+                { code: 'ja', name: '日本語', flag: '🇯🇵' },
+                { code: 'ko', name: '한국어', flag: '🇰🇷' }
             ]
         };
 
@@ -153,6 +261,7 @@ class MusicSoul {
         this.updateGreeting();
         this.updateTheme();
         this.checkMobile();
+        this.showPage(this.currentPage);
         
         // Initialize Lucide icons
         if (typeof lucide !== 'undefined') {
@@ -164,14 +273,17 @@ class MusicSoul {
         const savedTheme = localStorage.getItem('musicSoulTheme');
         const savedLeftPanel = localStorage.getItem('musicSoulLeftPanel');
         const savedRightPanel = localStorage.getItem('musicSoulRightPanel');
+        const savedPage = localStorage.getItem('musicSoulCurrentPage');
         
         if (savedTheme) this.isDarkTheme = savedTheme === 'dark';
         if (savedLeftPanel && !this.isMobile) this.leftPanelOpen = savedLeftPanel === 'true';
         if (savedRightPanel && !this.isMobile) this.rightPanelOpen = savedRightPanel === 'true';
+        if (savedPage) this.currentPage = savedPage;
     }
 
     savePreferences() {
         localStorage.setItem('musicSoulTheme', this.isDarkTheme ? 'dark' : 'light');
+        localStorage.setItem('musicSoulCurrentPage', this.currentPage);
         if (!this.isMobile) {
             localStorage.setItem('musicSoulLeftPanel', this.leftPanelOpen.toString());
             localStorage.setItem('musicSoulRightPanel', this.rightPanelOpen.toString());
@@ -201,6 +313,30 @@ class MusicSoul {
                 this.toggleRightPanel();
             });
         }
+
+        // Top navigation
+        const navBtns = this.safeGetElements('.nav-btn');
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = btn.dataset.page;
+                if (page) {
+                    this.showPage(page);
+                    this.setActiveNavBtn(btn);
+                }
+            });
+        });
+
+        // Library navigation
+        const libraryNavBtns = this.safeGetElements('.library-nav-btn');
+        libraryNavBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = btn.dataset.page;
+                if (page) {
+                    this.showPage(page);
+                    this.setActiveLibraryBtn(btn);
+                }
+            });
+        });
 
         // Profile dropdown
         const profileBtn = this.safeGetElement('#profile-btn');
@@ -297,6 +433,71 @@ class MusicSoul {
         window.addEventListener('resize', () => {
             this.checkMobile();
         });
+    }
+
+    showPage(pageName) {
+        // Hide all pages
+        const allPages = this.safeGetElements('.page-content');
+        allPages.forEach(page => {
+            page.classList.add('hidden');
+        });
+
+        // Show selected page
+        const targetPage = this.safeGetElement(`#${pageName}-page`);
+        if (targetPage) {
+            targetPage.classList.remove('hidden');
+            this.currentPage = pageName;
+            this.savePreferences();
+        }
+
+        // Update navigation states
+        this.updateNavigationStates(pageName);
+    }
+
+    updateNavigationStates(pageName) {
+        // Update top navigation
+        const navBtns = this.safeGetElements('.nav-btn');
+        navBtns.forEach(btn => {
+            btn.classList.remove('active', 'text-yellow-400', 'bg-yellow-400/20');
+            btn.classList.add('text-gray-400');
+            if (btn.dataset.page === pageName) {
+                btn.classList.add('active', 'text-yellow-400', 'bg-yellow-400/20');
+                btn.classList.remove('text-gray-400');
+            }
+        });
+
+        // Update library navigation
+        const libraryNavBtns = this.safeGetElements('.library-nav-btn');
+        libraryNavBtns.forEach(btn => {
+            btn.classList.remove('bg-yellow-400/20', 'text-yellow-400');
+            btn.classList.add('text-gray-300');
+            if (btn.dataset.page === pageName) {
+                btn.classList.add('bg-yellow-400/20', 'text-yellow-400');
+                btn.classList.remove('text-gray-300');
+            }
+        });
+    }
+
+    setActiveNavBtn(activeBtn) {
+        const navBtns = this.safeGetElements('.nav-btn');
+        navBtns.forEach(btn => {
+            btn.classList.remove('active', 'text-yellow-400', 'bg-yellow-400/20');
+            btn.classList.add('text-gray-400');
+        });
+        
+        activeBtn.classList.add('active', 'text-yellow-400', 'bg-yellow-400/20');
+        activeBtn.classList.remove('text-gray-400');
+    }
+
+    setActiveLibraryBtn(activeBtn) {
+        const libraryNavBtns = this.safeGetElements('.library-nav-btn');
+        libraryNavBtns.forEach(btn => {
+            btn.classList.remove('bg-yellow-400/20', 'text-yellow-400');
+            btn.classList.add('text-gray-300');
+        });
+        
+        activeBtn.classList.add('bg-yellow-400/20', 'text-yellow-400');
+        activeBtn.classList.remove('text-gray-300');
     }
 
     checkMobile() {
@@ -666,6 +867,13 @@ class MusicSoul {
         this.populateFeaturedPlaylists();
         this.populateTrending();
         this.populateUpNext();
+        this.populateLikedSongs();
+        this.populatePlaylists();
+        this.populateAlbums();
+        this.populateArtists();
+        this.populateDownloads();
+        this.populateLanguages();
+        this.populateProfileData();
     }
 
     populateQuickAccess() {
@@ -726,6 +934,100 @@ class MusicSoul {
             const element = this.createQueueItem(item, index);
             container.appendChild(element);
         });
+    }
+
+    populateLikedSongs() {
+        const container = this.safeGetElement('#liked-songs-list');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        this.musicData.likedSongs.forEach((song, index) => {
+            const element = this.createSongListItem(song, index);
+            container.appendChild(element);
+        });
+    }
+
+    populatePlaylists() {
+        const container = this.safeGetElement('#playlists-grid');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        this.musicData.playlists.forEach((playlist, index) => {
+            const element = this.createPlaylistCard(playlist, index);
+            container.appendChild(element);
+        });
+    }
+
+    populateAlbums() {
+        const container = this.safeGetElement('#albums-grid');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        this.musicData.albums.forEach((album, index) => {
+            const element = this.createAlbumCard(album, index);
+            container.appendChild(element);
+        });
+    }
+
+    populateArtists() {
+        const container = this.safeGetElement('#artists-grid');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        this.musicData.artists.forEach((artist, index) => {
+            const element = this.createArtistCard(artist, index);
+            container.appendChild(element);
+        });
+    }
+
+    populateDownloads() {
+        const container = this.safeGetElement('#downloads-list');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        this.musicData.downloads.forEach((download, index) => {
+            const element = this.createDownloadItem(download, index);
+            container.appendChild(element);
+        });
+    }
+
+    populateLanguages() {
+        const container = this.safeGetElement('#languages-list');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        this.musicData.languages.forEach((language, index) => {
+            const element = this.createLanguageItem(language, index);
+            container.appendChild(element);
+        });
+    }
+
+    populateProfileData() {
+        const recentArtistsContainer = this.safeGetElement('#recent-artists');
+        const topGenresContainer = this.safeGetElement('#top-genres');
+        
+        if (recentArtistsContainer) {
+            recentArtistsContainer.innerHTML = '';
+            this.musicData.artists.slice(0, 3).forEach((artist, index) => {
+                const element = this.createRecentArtistItem(artist, index);
+                recentArtistsContainer.appendChild(element);
+            });
+        }
+        
+        if (topGenresContainer) {
+            const genres = ['Electronic', 'Jazz', 'Pop', 'Rock', 'Classical'];
+            topGenresContainer.innerHTML = '';
+            genres.forEach((genre, index) => {
+                const element = this.createGenreItem(genre, index);
+                topGenresContainer.appendChild(element);
+            });
+        }
     }
 
     createQuickAccessItem(item, index) {
@@ -851,6 +1153,140 @@ class MusicSoul {
         div.addEventListener('click', () => {
             this.playSong(item);
         });
+        
+        return div;
+    }
+
+    createSongListItem(song, index) {
+        const div = document.createElement('div');
+        div.className = `grid grid-cols-12 gap-4 p-3 rounded-lg hover:bg-gray-800/50 transition-colors duration-200 cursor-pointer group`;
+        
+        div.innerHTML = `
+            <div class="col-span-1 flex items-center text-gray-400 group-hover:text-white">
+                <span class="group-hover:hidden">${index + 1}</span>
+                <i data-lucide="play" class="w-4 h-4 hidden group-hover:block"></i>
+            </div>
+            <div class="col-span-5 flex items-center space-x-3">
+                <img src="${song.artwork}" alt="${song.title}" class="w-10 h-10 rounded object-cover">
+                <div class="min-w-0">
+                    <p class="font-medium truncate">${song.title}</p>
+                    <p class="text-sm text-gray-400 truncate">${song.artist}</p>
+                </div>
+            </div>
+            <div class="col-span-3 flex items-center text-gray-400 truncate">${song.album}</div>
+            <div class="col-span-2 flex items-center text-gray-400">${song.dateAdded}</div>
+            <div class="col-span-1 flex items-center justify-center text-gray-400">${song.duration}</div>
+        `;
+        
+        div.addEventListener('click', () => {
+            this.playSong(song);
+        });
+        
+        return div;
+    }
+
+    createPlaylistCard(playlist, index) {
+        const div = document.createElement('div');
+        div.className = `bg-gray-900/50 rounded-lg p-4 hover:bg-gray-800/70 transition-all duration-200 cursor-pointer group`;
+        
+        div.innerHTML = `
+            <img src="${playlist.artwork}" alt="${playlist.title}" class="w-full aspect-square rounded-lg object-cover mb-4">
+            <h3 class="font-semibold text-lg truncate mb-2">${playlist.title}</h3>
+            <p class="text-sm text-gray-400 truncate mb-2">${playlist.description}</p>
+            <p class="text-xs text-gray-500">${playlist.songCount} songs</p>
+        `;
+        
+        return div;
+    }
+
+    createAlbumCard(album, index) {
+        const div = document.createElement('div');
+        div.className = `bg-gray-900/50 rounded-lg p-4 hover:bg-gray-800/70 transition-all duration-200 cursor-pointer group`;
+        
+        div.innerHTML = `
+            <img src="${album.artwork}" alt="${album.title}" class="w-full aspect-square rounded-lg object-cover mb-4">
+            <h3 class="font-semibold text-lg truncate mb-1">${album.title}</h3>
+            <p class="text-sm text-gray-400 truncate mb-1">${album.artist}</p>
+            <p class="text-xs text-gray-500">${album.year}</p>
+        `;
+        
+        return div;
+    }
+
+    createArtistCard(artist, index) {
+        const div = document.createElement('div');
+        div.className = `bg-gray-900/50 rounded-lg p-4 hover:bg-gray-800/70 transition-all duration-200 cursor-pointer group`;
+        
+        div.innerHTML = `
+            <img src="${artist.artwork}" alt="${artist.name}" class="w-full aspect-square rounded-full object-cover mb-4">
+            <h3 class="font-semibold text-lg truncate mb-1">${artist.name}</h3>
+            <p class="text-sm text-gray-400">${artist.followers} followers</p>
+        `;
+        
+        return div;
+    }
+
+    createDownloadItem(download, index) {
+        const div = document.createElement('div');
+        div.className = `grid grid-cols-12 gap-4 p-3 rounded-lg hover:bg-gray-800/50 transition-colors duration-200 cursor-pointer`;
+        
+        div.innerHTML = `
+            <div class="col-span-1 flex items-center text-gray-400">${index + 1}</div>
+            <div class="col-span-5 flex items-center space-x-3">
+                <img src="${download.artwork}" alt="${download.title}" class="w-10 h-10 rounded object-cover">
+                <div class="min-w-0">
+                    <p class="font-medium truncate">${download.title}</p>
+                    <p class="text-sm text-gray-400 truncate">${download.artist}</p>
+                </div>
+            </div>
+            <div class="col-span-3 flex items-center text-gray-400">${download.artist}</div>
+            <div class="col-span-2 flex items-center text-gray-400">${download.size}</div>
+            <div class="col-span-1 flex items-center justify-center">
+                <i data-lucide="download" class="w-4 h-4 text-yellow-400"></i>
+            </div>
+        `;
+        
+        return div;
+    }
+
+    createLanguageItem(language, index) {
+        const div = document.createElement('div');
+        div.className = `flex items-center justify-between p-4 rounded-lg border border-gray-700 hover:bg-gray-800/50 transition-colors duration-200 cursor-pointer`;
+        
+        div.innerHTML = `
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl">${language.flag}</span>
+                <span class="font-medium">${language.name}</span>
+            </div>
+            <input type="radio" name="language" value="${language.code}" class="text-yellow-500">
+        `;
+        
+        return div;
+    }
+
+    createRecentArtistItem(artist, index) {
+        const div = document.createElement('div');
+        div.className = `flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-200`;
+        
+        div.innerHTML = `
+            <img src="${artist.artwork}" alt="${artist.name}" class="w-10 h-10 rounded-full object-cover">
+            <div>
+                <p class="font-medium text-sm">${artist.name}</p>
+                <p class="text-xs text-gray-400">${artist.followers} followers</p>
+            </div>
+        `;
+        
+        return div;
+    }
+
+    createGenreItem(genre, index) {
+        const div = document.createElement('div');
+        div.className = `flex items-center justify-between p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-200`;
+        
+        div.innerHTML = `
+            <span class="font-medium text-sm">${genre}</span>
+            <span class="text-xs text-gray-400">${Math.floor(Math.random() * 50) + 10}%</span>
+        `;
         
         return div;
     }
