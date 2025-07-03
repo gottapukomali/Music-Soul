@@ -14,7 +14,6 @@ class MusicSoul {
         this.repeatMode = 0; // 0: off, 1: all, 2: one
         this.progress = 35;
         this.volume = 75;
-        this.isHidden = false;
         
         this.currentSong = {
             title: "Midnight Dreams",
@@ -154,7 +153,6 @@ class MusicSoul {
         this.updateGreeting();
         this.updateTheme();
         this.checkMobile();
-        this.setupTouchEvents();
         
         // Initialize Lucide icons
         if (typeof lucide !== 'undefined') {
@@ -299,43 +297,6 @@ class MusicSoul {
         window.addEventListener('resize', () => {
             this.checkMobile();
         });
-    }
-
-    setupTouchEvents() {
-        // Touch and mouse events for hiding main content
-        document.addEventListener('touchstart', () => {
-            this.hideMainContent();
-        }, { passive: true });
-
-        document.addEventListener('touchend', () => {
-            this.showMainContent();
-        }, { passive: true });
-
-        document.addEventListener('mousedown', () => {
-            this.hideMainContent();
-        });
-
-        document.addEventListener('mouseup', () => {
-            this.showMainContent();
-        });
-    }
-
-    hideMainContent() {
-        const mainContent = this.safeGetElement('#main-content');
-        if (mainContent) {
-            mainContent.style.opacity = '0';
-            mainContent.style.pointerEvents = 'none';
-            this.isHidden = true;
-        }
-    }
-
-    showMainContent() {
-        const mainContent = this.safeGetElement('#main-content');
-        if (mainContent) {
-            mainContent.style.opacity = '1';
-            mainContent.style.pointerEvents = 'auto';
-            this.isHidden = false;
-        }
     }
 
     checkMobile() {
